@@ -1,0 +1,32 @@
+@import './base.css';
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+/* 自定义滚动条样式 */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 0.6em;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #1e293b; /* 滚动条轨道的背景颜色 */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #334155; /* 滚动条滑块的背景颜色 */
+  border-radius: 20px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #475569; /* 滚动条滑块在悬停时的背景颜色 */
+}
