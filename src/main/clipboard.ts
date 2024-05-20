@@ -16,12 +16,15 @@ export const clipboardInit = (win) => {
     const isSend: boolean = false
     if (currentText !== previousText) {
       previousText = currentText
-      db
-        .prepare(
-          `INSERT INTO contents (title,content,category_id,created_at) VALUES('${currentText}','${currentText}',1,datetime());`
-        )
-        .run().lastInsertRowid
-      win.webContents.send('clipboard-changed')
+      const stmt = db.prepare(
+        'INSERT INTO contents (title,content,category_id,created_at) VALUES(?, ?, ?, ?)'
+      )
+      try {
+        stmt.run(currentText, currentText, 1, new Date().toISOString()).lastInsertRowid
+        win.webContents.send('clipboard-changed')
+      } catch (error) {
+        console.log('error: ', error)
+      }
     }
     if (!currentImage.isEmpty() && previousImage.toDataURL() !== currentImage.toDataURL()) {
       console.log('img', currentImage.toJPEG(100))

@@ -35,7 +35,8 @@ const copy = () => {
         'p-2',
         'flex',
         'justify-between',
-        'items-center'
+        'items-center',
+        'select-text'
       ]"
     >
       <span>{{ item.content }}</span>
