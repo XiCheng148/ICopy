@@ -10,7 +10,7 @@ export interface OptionsType extends Partial<BrowserWindowConstructorOptions> {
 }
 
 export function createWindow(options: OptionsType): BrowserWindow {
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+  const { height } = screen.getPrimaryDisplay().workAreaSize
   const win = new BrowserWindow(
     Object.assign(
       {

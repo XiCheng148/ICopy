@@ -50,5 +50,6 @@ function initData() {
     }
   }
 }
+console.log('initData: ', initData)
 
 // initData()

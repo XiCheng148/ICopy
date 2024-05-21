@@ -8,14 +8,14 @@ onMounted(async () => {
   list.value = await getAllItem()
 })
 
-window.electron.ipcRenderer.on('clipboard-changed', async () => {
-  const res = await getAllItem()
-  list.value = [...res]
-  console.log('list.value: ', list.value)
-})
-const copy = () => {
-  console.log('copy')
-}
+// window.electron.ipcRenderer.on('clipboard-changed', async () => {
+//   const res = await getAllItem()
+//   list.value = [...res]
+//   console.log('list.value: ', list.value)
+// })
+// const copy = () => {
+//   console.log('copy')
+// }
 </script>
 <template>
   <!-- <button type="button" @click="showBar">Show Bar</button> -->
