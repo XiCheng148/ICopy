@@ -1,5 +1,13 @@
-import { BrowserWindow, BrowserWindowConstructorOptions, screen, shell } from 'electron'
-import { join } from 'path'
+import {
+  BrowserWindow,
+  BrowserWindowConstructorOptions,
+  Menu,
+  Tray,
+  app,
+  screen,
+  shell
+} from 'electron'
+import path, { join } from 'path'
 import icon from '../../resources/icon.png?asset'
 import { is } from '@electron-toolkit/utils'
 import url from 'node:url'
@@ -34,6 +42,37 @@ export function createWindow(options: OptionsType): BrowserWindow {
     )
   )
   clipboardInit(win)
+
+  // 监听窗口失去焦点事件
+  win.on('blur', () => {
+    // win.hide()
+  })
+
+  // 创建托盘图标和菜单
+  const tray = new Tray(path.join(__dirname, '../../resources/icon.png'))
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: 'Show App',
+      click: () => {
+        win.show()
+      }
+    },
+    {
+      label: 'Quit',
+      click: () => {
+        app.quit()
+      }
+    }
+  ])
+
+  tray.setToolTip('My Electron App')
+  tray.setContextMenu(contextMenu)
+
+  // 点击托盘图标时显示窗口
+  tray.on('click', () => {
+    win.show()
+  })
+
   if (is.dev && options.openDevTools) {
     win.webContents.openDevTools()
   }
